@@ -1,7 +1,10 @@
 from doctor_data.data import doctor_list
-from user_input import users
+from user_input import take_user_input
 
 
+# Take input from the user and predicts speciality type
+users = take_user_input()
+# Recommend the doctors for appointment
 for specialist, entries in users.items():
     for user in entries:
         user_start_time = user["start_time"]
