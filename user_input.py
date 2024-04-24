@@ -4,11 +4,8 @@ from predictionAlgorithm import predict_speciality
 
 
 # Input number of users
-
 users = {}
-
 # Input user data
-
 
 user_name = input("Enter user name: ")
 
@@ -16,11 +13,11 @@ user_name = input("Enter user name: ")
 disease, doctor = predict_speciality()
 
 # Input start and end time
-print("Please note doctor are not availble from 10 PM to 8 AM")
+print("Please note doctors are not available from 10 PM to 8 AM")
 start_time, end_time = map(
     int,
     input(
-        "Please Enter start time and end time in 24 hr format: \nExample 8 12   \n "
+        "Enter start time and end time in 24 hr format (Example: 8 12 for 8AM to 12PM): "
     ).split(),
 )
 

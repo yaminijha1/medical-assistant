@@ -2,7 +2,7 @@ from doctor_data.data import doctor_list
 from user_input import users
 
 
-for speacilist, entries in users.items():
+for specialist, entries in users.items():
     for user in entries:
         user_start_time = user["start_time"]
         user_end_time = user["end_time"]
@@ -10,7 +10,7 @@ for speacilist, entries in users.items():
         user_disease = user["disease"]
 
         available_doctors = []
-        for doctor in doctor_list[speacilist]:
+        for doctor in doctor_list[specialist]:
             doc_available_slots = doctor["availability"]
             doc_name = doctor["name"]
             doc_rating = doctor["rating"]
@@ -31,20 +31,17 @@ for speacilist, entries in users.items():
         print()
 
         if available_doctors:
-            print(f"Available {speacilist} for {user_name} :")
+            print(f"Available {specialist} for {user_name} :")
             for doctor in available_doctors:
-                print(f"Dr. {doctor['name']}, Rating: {doctor['rating']}")
+                print(f"Dr. {doctor['name']}, Rating: {doctor['rating']}/5")
 
             print()
-
-            
             recommended_doctor = max(available_doctors, key=lambda x: x["rating"])
-
             start_time = recommended_doctor["start_time"]
             print(
-                f"we recommend dcotor Dr.,{recommended_doctor['name']}, with rating :,{recommended_doctor['rating']}"
+                f"We recommend you visit Dr. {recommended_doctor['name']} who has a rating of {recommended_doctor['rating']}/5"
             )
-            print("slots available are : ")
+            print("Slots available are as follows: ")
             for slot in recommended_doctor["doctor"]["availability"]:
                 if slot["startTime"] >= recommended_doctor["start_time"]:
                     start_slot = slot["startTime"]
@@ -56,6 +53,5 @@ for speacilist, entries in users.items():
                 if slot["startTime"] == recommended_doctor["start_time"]:
                     recommended_doctor["doctor"]["availability"].remove(slot)
                     break
-
         else:
             print("No doctors available during the specified time.\n\n")
